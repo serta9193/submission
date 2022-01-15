@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charaset="UTF-8">
+        <title>ブラックジャック戦略</title>
+    </head>
+    <body>
+        <h3>期待値からブラックジャック戦略を考えます</h3>
+        <p class="motivation">
+            動機
+            <br>
+            ブラックジャックの戦略表はベーシックストラテジーが存在するものの，6デック向けであり，家庭で遊ぶ場合には使えないので，
+            家庭用の戦略を考えたいと思ったため。また，Unityで何か作りたかったため。
+        </p>
+        <p class="rule">
+            ルール
+            <br>
+            以下のルールを採用
+            <br>
+            ・シングルデック，毎回リセットする
+            <br>
+            ・ナチュラルブラックジャックの配当1.5倍
+            <br>
+            ・スプリット無し
+            <br>
+            ・インシュアランス無し
+            <br>
+            ・サレンダー無し
+            <br>
+            ・ダブルダウン有
+            <br>
+            ・ファイブカードチャーリー有
+            <br>
+            ・ディーラーはソフトハンドの17でスタンド
+            <br>
+            ・お互いハンドは5枚まで
+        </p>
+        <p class="formula">
+            方法
+            <br>
+            期待値は以下の式で求める。
+            <br>
+            期待値＝勝率 - 負け確率
+            <br>
+            ダブルダウン期待値＝2 × (勝率 - 負け確率)
+            <br>
+            また，
+            <br>
+            勝率＝ディーラーのバースト率＋ディーラーがプレイヤーより小さくなる確率
+            <br>
+            ハンドが5枚になる時，勝率＝5カード成立確率
+            <br>
+            負け確率＝プレイヤーのバースト率＋ディーラーがプレイヤーより大きくなる確率＋ディーラーのBJ率
+            <br>
+            とし，それぞれをモンテカルロ法（n＝1,000,000）で求める。
+        </p>
+        <div class="card">
+            以下にアップカードとハンドを入力し，期待値を計算，推奨手を導く。
+            <br>
+            <select id="upCard">
+                <option value="0">アップカード</option>
+                <option value="1">A</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="10">J</option>
+                <option value="10">Q</option>
+                <option value="10">K</option>
+            </select>
+            <select id="card1">
+                <option value="0">1枚目</option>
+                <option value="1">A</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="10">J</option>
+                <option value="10">Q</option>
+                <option value="10">K</option>
+            </select>
+            <select id="card2">
+                <option value="0">2枚目</option>
+                <option value="1">A</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="10">J</option>
+                <option value="10">Q</option>
+                <option value="10">K</option>
+            </select>
+            <select id="card3">
+                <option value="0">3枚目</option>
+                <option value="1">A</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="10">J</option>
+                <option value="10">Q</option>
+                <option value="10">K</option>
+            </select>
+            <select id="card4">
+                <option value="0">4枚目</option>
+                <option value="1">A</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="10">J</option>
+                <option value="10">Q</option>
+                <option value="10">K</option>
+            </select>
+            <button id="enter">決定</button>
+            <button id="reset">リセット</button>
+            <span id="result"></span>
+        </div>
+        <br>
+        <iframe
+            width="1000"
+            height="600"
+            src="https://serta9193.github.io/blackjack/"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        <p class="result">結果</p>
+        <figure>
+            <img src="result.png" width="600" height="350">
+            <figcaption>図1. 推奨手に従って100回プレイした結果</figcaption>
+        </figure>
+        <p class="result">
+            上昇傾向にあるため，戦略の作成に成功したといえる。
+            <br>
+            また，大きく上昇していることから，プレイヤーに有利なルールであることが判明した。
+        </p>
+        <div class="reference">
+            <p>
+                参考
+                <br>
+                ブラックジャック-Wikipedia
+                <a href="https://ja.wikipedia.org/wiki/%E3%83%96%E3%83%A9%E3%83%83%E3%82%AF%E3%82%B8%E3%83%A3%E3%83%83%E3%82%AF">
+                    https://ja.wikipedia.org/wiki/...
+                </a>
+            </p>
+            <p>
+                情報処理学会，ブラックジャックにおける戦略表の生成，兒玉 博司 黒田 久奏
+                <a href="https://ipsj.ixsq.nii.ac.jp/ej/index.php?active_action=repository_view_main_item_detail&page_id=13&block_id=8&item_id=139666&item_no=1">
+                    https://ipsj.ixsq.nii.ac.jp/...
+                </a>
+            </p>
+        </div>
+        <div class="material">
+            <p>
+                音源
+                <br>
+                魔王魂，
+                <a href="https://maou.audio/" target="_blank">https://maou.audio/</a>
+            </p>
+            <p>
+                フォント
+                <br>
+                装甲明朝，
+                <a href="https://flopdesign.booth.pm/items/1028555" target="_blank">https://flopdesign.booth.pm/items/1028555</a>
+            </p>
+        </div>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="expected_value.js"></script>
+    </body>
