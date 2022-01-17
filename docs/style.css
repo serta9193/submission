@@ -1,60 +1,82 @@
-body
+@media screen and (min-width: 481px)
 {
-    font-family: sans-serif;
+    body
+    {
+        font-family: sans-serif;
+    }
+
+    h3
+    {
+        text-align: center;
+    }
+
+    .motivation
+    {
+        margin-left: 200px;
+        margin-right: 200px;
+    }
+
+    .rule
+    {
+        margin-left: 200px;
+        margin-right: 200px;
+    }
+
+    .formula
+    {
+        margin-left: 200px;
+        margin-right: 200px;
+    }
+
+    .card
+    {
+        margin-left: 200px;
+        margin-right: 200px;
+    }
+
+    iframe
+    {
+        margin-left: 170px;
+    }
+
+    figure
+    {
+        margin-left: 200px;
+    }
+
+    .result
+    {
+        margin-left: 200px;
+    }
+
+    .reference
+    {
+        margin-left: 200px;
+        margin-right: 200px;
+    }
+
+    .material
+    {
+        margin-left: 200px;
+    }
 }
 
-h3
+@media screen and (max-width: 480px)
 {
-    text-align: center;
-}
+    *
+    {
+        float: none;
+        position: static;
+    }
 
-.motivation
-{
-    margin-left: 200px;
-    margin-right: 200px;
+    img
+    {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    h3
+    {
+        text-align: center;
+    }
 }
-
-.rule
-{
-    margin-left: 200px;
-    margin-right: 200px;
-}
-
-.formula
-{
-    margin-left: 200px;
-    margin-right: 200px;
-}
-
-.card
-{
-    margin-left: 200px;
-    margin-right: 200px;
-}
-
-iframe
-{
-    margin-left: 170px;
-}
-
-figure
-{
-    margin-left: 200px;
-}
-
-.result
-{
-    margin-left: 200px;
-}
-
-.reference
-{
-    margin-left: 200px;
-    margin-right: 200px;
-}
-
-.material
-{
-    margin-left: 200px;
-}
-
